@@ -7,6 +7,7 @@ import InputText from './input-text'
 import InputSelect from './input-select'
 import Dialog from './dialog'
 import DeleteDialog from './dialog-delete'
+import SuccessDeleteModal from './dialog-success'
 
 export {
     Layout,
@@ -17,5 +18,6 @@ export {
     InputText,
     InputSelect,
     Dialog,
-    DeleteDialog
+    DeleteDialog,
+    SuccessDeleteModal
 }
