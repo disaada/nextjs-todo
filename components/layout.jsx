@@ -3,10 +3,13 @@ import styled from 'styled-components'
 
 const Header = styled.header`
   background-color: var(--primary-color);
+
   div {
     max-width: clamp(10px, 90vw, 1000px);
     margin: 0 auto;
     padding: clamp(10px, 3vh, 30px) 0;
+    color: var(--secondary-text-color);
+    font-size: 24px;
   }
 `
 

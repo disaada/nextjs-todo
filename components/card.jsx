@@ -22,11 +22,14 @@ const Container = styled.article`
     .card-title {
       flex: 1;
       cursor: pointer;
+      font-size: 18px;
     }
 
     .card-nav {
       display: flex;
       justify-content: space-between;
+      color: var(--tertiary-text-color);
+      font-size: 14px;
     }
 `
 
@@ -54,6 +57,7 @@ const Card = ({ data }) => {
             icon={faTrashAlt}
             onClick={() => setModalDelete(true)}
             data-cy="activity-item-delete-button"
+            className='fa-icon'
           />
         </span>
       </div>
@@ -70,7 +74,7 @@ const Card = ({ data }) => {
       <SuccessDeleteModal
         show={successModal}
         onHide={() => {
-          queryClient.invalidateQueries(["activity-group"])
+          successModal && queryClient.invalidateQueries(["activity-group"])
           setSuccessModal(false)
         }}
       />

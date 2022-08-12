@@ -26,7 +26,7 @@ const Dialog = (props) => {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <InputText control={control} name="title" label="NAMA LIST ITEM" />
+          <InputText control={control} name="title" label="NAMA LIST ITEM" placeholder="Tambahkan nama list item" />
           <InputSelect control={control} name="priority" label="PRIORITY" />
         </Form>
       </Modal.Body>
@@ -38,7 +38,7 @@ const Dialog = (props) => {
           })}
           disabled={!watch('title')}
           data-cy="modal-add-save-button"
-          >Simpan</Button>
+        >Simpan</Button>
       </Modal.Footer>
     </Modal>
   )
