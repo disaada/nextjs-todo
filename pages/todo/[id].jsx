@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect } from 'react'
 import { Layout, Nav as Section, Button, CardTodo, Dialog } from "components";
 import Image from "next/image";
 import { getActivityDetail, createTodo, updateActivity, updateTodo } from "api/todo";
@@ -24,7 +24,7 @@ const Sort = (props) => {
   }
 
   return (
-    <Fragment data-cy="Sort">
+    <div data-cy="Sort">
       <Image
         src="/icon/todo-sort-button.svg"
         width={50}
@@ -89,7 +89,7 @@ const Sort = (props) => {
           Belum Selesai
         </Dropdown.Item>
       </Dropdown.Menu>
-    </Fragment>
+    </div>
   )
 }
 
@@ -116,7 +116,7 @@ export default function Home() {
   const { mutate: mutateEdit } = useMutation(updateTodo, { onSuccess })
   const { mutate: mutateTitle } = useMutation(updateActivity, { onSuccess })
   const onSubmit = data => mutate({ activity_group_id: id, ...data });
-  const onEdit = (id, data) => mutateEdit({ id, params: data });
+  const onEdit = (data, id) => mutateEdit({ id, params: data });
   const handleChangeTitle = () => {
     if (editTitle && (title !== data?.data?.title)) mutateTitle({ id, params: { title } })
     setEditTitle(!editTitle)
