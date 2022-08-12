@@ -26,21 +26,22 @@ const DialogDelete = (props) => {
 
   return (
   <Modal
-    aria-labelledby="contained-modal-title-vcenter"
     centered
+    backdrop="static"
+    data-cy="modal-delete"
     {...props}
   >
     <Modal.Body>
       <ModalContainer>
         <div>
-          <Image src='/icon/modal-delete-icon.svg' width={100} height={100} alt="" />
+          <Image src='/icon/modal-delete-icon.svg' width={100} height={100} alt="" data-cy="modal-delete-icon" />
         </div>
-        <div className='modal-desc'>
+        <div className='modal-desc' data-cy="modal-delete-title">
           Apakah anda yakin menghapus {props.type} <b>&quot;{props.title}&quot;</b>?
         </div>
         <div className="modal-button">
-          <Button onClick={props.onHide}>Batal</Button>
-          <Button onClick={() => mutate(props.id)}>Hapus</Button>
+          <Button onClick={props.onHide} data-cy="modal-delete-cancel-button">Batal</Button>
+          <Button onClick={() => mutate(props.id)} data-cy="modal-delete-confirm-button">Hapus</Button>
         </div>
       </ModalContainer>
     </Modal.Body>
