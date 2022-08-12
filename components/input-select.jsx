@@ -26,6 +26,7 @@ const InputText = (props) => {
             options={option}
             onChange={(val) => onChange(val.value)}
             onFocus={() => {}}
+            data-cy="modal-add-priority-dropdown"
             components={{ 
               Option: (props) => <Option {...props}><FontAwesomeIcon icon={faCircle} color={props.data.color} /> {props.data.label}</Option>,
               SingleValue: (props) => <SingleValue {...props} data-cy={props.data.datacy}><FontAwesomeIcon icon={faCircle} color={props.data.color} /> {props.data.label}</SingleValue>,
