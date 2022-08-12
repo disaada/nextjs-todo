@@ -3,8 +3,10 @@
   --secondary-color: #fff;
 
   --primary-text-color: #111;
-  --secondary-text-color: #fff
-}
+  --secondary-text-color: #fff;
+  --tertiary-text-color: #888;
+  --quartenary-text-color: #555;
+}s
 
 html,
 body {

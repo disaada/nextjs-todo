@@ -30,7 +30,7 @@ export default function Home() {
       </Section>
       <SectionActivity>
         { data?.data?.data?.length > 0 && data?.data?.data?.map((v, idx) => (
-          <Card data={v} key={v+idx} data-cy="activity-item" />
+          <Card data={v} key={v+idx} />
         ))}
         {(data?.data?.data?.length <= 0) || isError && (
           <Image

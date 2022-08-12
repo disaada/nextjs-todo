@@ -24,13 +24,14 @@ const Sort = (props) => {
   }
 
   return (
-    <div data-cy="Sort">
+    <div>
       <Image
         src="/icon/todo-sort-button.svg"
         width={50}
         height={50}
         alt=""
         onClick={() => props.setSortShow(!props.sortShow)}
+        data-cy="todo-sort-button"
       />
 
       <Dropdown.Menu show={props.sortShow} data-cy="sort-parent">
@@ -118,8 +119,7 @@ export default function Home() {
   const onSubmit = data => mutate({ activity_group_id: id, ...data });
   const onEdit = (data, id) => mutateEdit({ id, params: data });
   const handleChangeTitle = () => {
-    if (editTitle && (title !== data?.data?.title)) mutateTitle({ id, params: { title } })
-    setEditTitle(!editTitle)
+    if (title !== data?.data?.title) mutateTitle({ id, params: { title } })
   }
   const handleEdit = (id) => {
     const find = data?.data?.todo_items?.find(v => v.id === id) || null
@@ -152,14 +152,17 @@ export default function Home() {
           <Link href="/">
             <FontAwesomeIcon icon={faAngleLeft} data-cy="todo-back-button" />
           </Link>
-          <span data-cy="todo-title">
-            {!editTitle && data?.data?.title}
+          <span data-cy="todo-title" >
+            {!editTitle && (<span onClick={() => setEditTitle(!editTitle)}>{data?.data?.title}</span>)}
             {editTitle && (<Form.Control className='inline-input' value={title} onChange={(evt) => setTitle(evt.target.value)} />)}
           </span>
-          <FontAwesomeIcon icon={faPencilAlt} onClick={handleChangeTitle} data-cy="todo-title-edit-button" />
+          <FontAwesomeIcon icon={faPencilAlt} onClick={() => {
+            handleChangeTitle()
+            setEditTitle(!editTitle)
+            }} data-cy="todo-title-edit-button" />
         </Div>
         <div>
-          <Sort sortShow={sortShow} setSortShow={setSortShow} setSortby={setSortby} data-cy="todo-sort-button" />
+          <Sort sortShow={sortShow} setSortShow={setSortShow} setSortby={setSortby} />
           <Button onClick={() => setModalShow(true)} data-cy="todo-add-button">tambah</Button>
         </div>
       </Section>
