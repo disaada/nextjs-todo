@@ -27,8 +27,8 @@ const Dialog = (props) => {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <InputText control={control} name="title" label="NAMA LIST ITEM" data-cy="modal-add-name-input" />
-          <InputSelect control={control} name="priority" label="PRIORITY" data-cy="modal-add-priority-dropdown" />
+          <InputText control={control} name="title" label="NAMA LIST ITEM" />
+          <InputSelect control={control} name="priority" label="PRIORITY" />
         </Form>
       </Modal.Body>
       <Modal.Footer>

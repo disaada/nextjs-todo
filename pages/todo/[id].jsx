@@ -163,7 +163,7 @@ export default function Home() {
         </Div>
         <div>
           <Sort sortShow={sortShow} setSortShow={setSortShow} setSortby={setSortby} />
-          <Button onClick={() => setModalShow(true)} data-cy="todo-add-button">tambah</Button>
+          <Button onClick={() => setModalShow(true)} data-cy="todo-add-button">Tambah</Button>
         </div>
       </Section>
       <section>
