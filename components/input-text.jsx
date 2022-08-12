@@ -8,7 +8,7 @@ const InputText = (props) => {
       {...props}
       render={({ field }) => (
         <Form.Group>
-          <Form.Label>{props.label}</Form.Label>
+          <Form.Label data-cy="modal-add-name-title">{props.label}</Form.Label>
           <Form.Control {...field} />
         </Form.Group>
       )}

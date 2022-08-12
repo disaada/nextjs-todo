@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPencilAlt, faCircle } from '@fortawesome/free-solid-svg-icons'
@@ -38,17 +38,20 @@ const CardTodo = ({ data, handleEdit, handleCheck }) => {
     <Container>
       <div className='card-title'>
         <Form.Check
+          id={data.id}
+          name={data.id}
           type='checkbox'
           style={{ display: 'inline', marginRight: 20 }}
           onClick={() => handleCheck(data.id, { is_active: data.is_active === 1 ? 0 : 1 })}
           checked={data?.is_active === 0}
+          data-cy="todo-item-checkbox"
         />
-        <FontAwesomeIcon icon={faCircle} color={(option.find(v => v.value === data.priority))?.color} />
-        <span style={{ textDecoration: data.is_active === 1 ? 'none' : 'line-through' }}>{data?.title}</span>
-        <FontAwesomeIcon icon={faPencilAlt} onClick={() => handleEdit(data.id)} />
+        <FontAwesomeIcon icon={faCircle} color={(option.find(v => v.value === data.priority))?.color} data-cy="todo-item-priority-indicator" />
+        <span style={{ textDecoration: data.is_active === 1 ? 'none' : 'line-through' }} data-cy="todo-item-title">{data?.title}</span>
+        <FontAwesomeIcon icon={faPencilAlt} onClick={() => handleEdit(data.id)} data-cy="todo-item-edit-button" />
       </div>
       <div className='card-nav'>
-        <span><FontAwesomeIcon icon={faTrashAlt} onClick={() => setModalDelete(true)} /></span>
+        <span><FontAwesomeIcon icon={faTrashAlt} onClick={() => setModalDelete(true)} data-cy="todo-item-delete-button" /></span>
       </div>
       <DeleteDialog
         show={modalDelete}
@@ -63,4 +66,4 @@ const CardTodo = ({ data, handleEdit, handleCheck }) => {
   )
 }
 
-export default CardTodo
+export default memo(CardTodo)

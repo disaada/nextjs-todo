@@ -18,7 +18,7 @@ const Main = styled.main`
 const Layout = ({ children }) => {
   return (
     <Fragment>
-      <Header><div>TO DO LIST APP</div></Header >
+      <Header data-cy="header-background"><div data-cy="header-title">TO DO LIST APP</div></Header >
       <Main>{children}</Main>
     </Fragment>
   )

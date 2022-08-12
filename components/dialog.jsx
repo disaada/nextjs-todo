@@ -12,30 +12,34 @@ const Dialog = (props) => {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      backdrop="static"
       onHide={() => {
         reset()
         props.onHide()
       }}
       {...props}
+      data-cy="modal-add"
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+      <Modal.Header closeButton data-cy="modal-add-close-button">
+        <Modal.Title data-cy="modal-add-title">
           {props.type} List Item
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <InputText control={control} name="title" label="NAMA LIST ITEM" />
-          <InputSelect control={control} name="priority" label="PRIORITY" />
+          <InputText control={control} name="title" label="NAMA LIST ITEM" data-cy="modal-add-name-input" />
+          <InputSelect control={control} name="priority" label="PRIORITY" data-cy="modal-add-priority-dropdown" />
         </Form>
       </Modal.Body>
       <Modal.Footer>
         <Button
           onClick={handleSubmit((data) => {
             reset()
-            props.onSubmit(props.defaultvalues.id, data)
+            props.onSubmit(data, props.defaultvalues.id)
           })}
-          disabled={!watch('title')}>Simpan</Button>
+          disabled={!watch('title')}
+          data-cy="modal-add-save-button"
+          >Simpan</Button>
       </Modal.Footer>
     </Modal>
   )
