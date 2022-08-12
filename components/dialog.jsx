@@ -12,7 +12,6 @@ const Dialog = (props) => {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
-      backdrop="static"
       onHide={() => {
         reset()
         props.onHide()

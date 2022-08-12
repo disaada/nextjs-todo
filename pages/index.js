@@ -22,8 +22,6 @@ export default function Home() {
     },
   })
 
-  console.log(data?.data?.data.length)
-
   return (
     <Layout>
       <Section>
