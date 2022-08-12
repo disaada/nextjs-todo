@@ -43,7 +43,7 @@ const Card = ({ data }) => {
   }, [modalDelete, button])
 
   return (
-    <Container>
+    <Container data-cy="activity-item">
       <Link href={`/todo/${data.id}`}>
         <div className='card-title' data-cy="activity-item-title">{data?.title}</div>
       </Link>
