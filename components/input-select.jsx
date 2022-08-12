@@ -20,18 +20,19 @@ const InputText = (props) => {
       render={({ field: { onChange, value, ref, ...rest } }) => (
         <Form.Group>
           <Form.Label data-cy="modal-add-priority-title">{props.label}</Form.Label>
+          <div data-cy="modal-add-priority-dropdown">
           <Select
             inputRef={ref}
             value={option.find(v => v.value === value ?? 'very-high')}
             options={option}
             onChange={(val) => onChange(val.value)}
             onFocus={() => {}}
-            data-cy="modal-add-priority-dropdown"
             components={{ 
               Option: (props) => <Option {...props}><FontAwesomeIcon icon={faCircle} color={props.data.color} /> {props.data.label}</Option>,
               SingleValue: (props) => <SingleValue {...props} data-cy={props.data.datacy}><FontAwesomeIcon icon={faCircle} color={props.data.color} /> {props.data.label}</SingleValue>,
             }}
           />
+          </div>
         </Form.Group>
       )}
     />
