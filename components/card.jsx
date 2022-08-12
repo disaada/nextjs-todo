@@ -3,13 +3,11 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { faCircleExclamation } from '@fortawesome/free-regular-svg-icons'
 import dayjs from 'dayjs'
 import Link from 'next/link'
-import { DeleteDialog } from 'components'
+import { DeleteDialog, SuccessDeleteModal } from 'components'
 import { deleteActivity } from 'api/todo'
-import { Modal } from 'react-bootstrap';
-import Image from 'next/image'
+import { useQueryClient } from '@tanstack/react-query'
 
 const Container = styled.article`
     background-color: var(--secondary-color);
@@ -32,38 +30,17 @@ const Container = styled.article`
     }
 `
 
-const SuccessDeleteModal = (props) => (
-  <Modal
-    centered
-    data-cy="modal-information"
-    {...props}
-  >
-    <Modal.Body>
-      <Image
-        src="/icon/modal-information-icon.svg"
-        width={30}
-        height={30}
-        alt=""
-        data-cy="modal-information-icon"
-      />
-      <span data-cy="modal-information-title">
-      Activity berhasil dihapus
-      </span>
-    </Modal.Body>
-  </Modal>
-)
-
 const Card = ({ data }) => {
   const [modalDelete, setModalDelete] = useState(false)
   const [successModal, setSuccessModal] = useState(false)
-  const [count, setCount] = useState(0)
+  const [button, setButton] = useState('')
+  const queryClient = useQueryClient()
 
   useEffect(() => {
-    if (!modalDelete && count === 1) {
+    if (!modalDelete && button === 'hapus') {
       setSuccessModal(true)
-      setCount(0)
     }
-  }, [modalDelete])
+  }, [modalDelete, button])
 
   return (
     <Container>
@@ -75,12 +52,9 @@ const Card = ({ data }) => {
         <span>
           <FontAwesomeIcon
             icon={faTrashAlt}
-            onClick={() => {
-              setCount(1)
-              setModalDelete(true)
-            }}
+            onClick={() => setModalDelete(true)}
             data-cy="activity-item-delete-button"
-            />
+          />
         </span>
       </div>
       <DeleteDialog
@@ -91,10 +65,14 @@ const Card = ({ data }) => {
         type="activity"
         fn={deleteActivity}
         queryname="activity-group"
+        setbutton={setButton}
       />
       <SuccessDeleteModal
         show={successModal}
-        onHide={() => setSuccessModal(false)}
+        onHide={() => {
+          queryClient.invalidateQueries(["activity-group"])
+          setSuccessModal(false)
+        }}
       />
     </Container>
   )

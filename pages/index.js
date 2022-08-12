@@ -26,11 +26,11 @@ export default function Home() {
     <Layout>
       <Section>
         <div data-cy="activity-title">Activity</div>
-        <Button onClick={() => mutate({ title: 'New Activity', email })} data-cy="activity-add-button">tambah</Button>
+        <Button onClick={() => mutate({ title: 'New Activity', email })} data-cy="activity-add-button">Tambah</Button>
       </Section>
       <SectionActivity>
         { data?.data?.data?.length > 0 && data?.data?.data?.map((v, idx) => (
-          <Card data={v} key={v+idx} data-cy={"activity-item-"+idx} />
+          <Card data={v} key={v+idx} data-cy="activity-item" />
         ))}
         {(data?.data?.data?.length <= 0) || isError && (
           <Image
