@@ -22,6 +22,10 @@ const Container = styled.article`
     .card-nav {
       display: flex;
     }
+
+    .todo-card-icon {
+      color: var(--tertiary-text-color);
+    }
 `
 
 const CardTodo = ({ data, handleEdit, handleCheck }) => {
@@ -42,16 +46,40 @@ const CardTodo = ({ data, handleEdit, handleCheck }) => {
           name={data.id}
           type='checkbox'
           style={{ display: 'inline', marginRight: 20 }}
-          onClick={() => handleCheck(data.id, { is_active: data.is_active === 1 ? 0 : 1 })}
+          onClick={() => handleCheck({ is_active: data.is_active === 1 ? 0 : 1 }, data.id)}
           checked={data?.is_active === 0}
           data-cy="todo-item-checkbox"
         />
-        <FontAwesomeIcon icon={faCircle} color={(option.find(v => v.value === data.priority))?.color} data-cy="todo-item-priority-indicator" />
-        <span style={{ textDecoration: data.is_active === 1 ? 'none' : 'line-through' }} data-cy="todo-item-title">{data?.title}</span>
-        <FontAwesomeIcon icon={faPencilAlt} onClick={() => handleEdit(data.id)} data-cy="todo-item-edit-button" />
+        <FontAwesomeIcon
+          icon={faCircle}
+          color={(option.find(v => v.value === data.priority))?.color}
+          data-cy="todo-item-priority-indicator"
+        />
+        <span
+          style={{ 
+            textDecoration: data.is_active === 1 ? 'none' : 'line-through',
+            color:  data.is_active === 1 ? 'var(--primary-text-color)' : 'var(--tertiary-text-color)'
+          }}
+          data-cy="todo-item-title"
+          className="todo-card-title">
+          {data?.title}
+        </span>
+        <FontAwesomeIcon
+          icon={faPencilAlt}
+          onClick={() => handleEdit(data.id)}
+          data-cy="todo-item-edit-button"
+          className="todo-card-icon fa-icon"
+        />
       </div>
       <div className='card-nav'>
-        <span><FontAwesomeIcon icon={faTrashAlt} onClick={() => setModalDelete(true)} data-cy="todo-item-delete-button" /></span>
+        <span>
+          <FontAwesomeIcon
+            icon={faTrashAlt}
+            onClick={() => setModalDelete(true)}
+            data-cy="todo-item-delete-button"
+            className="todo-card-icon fa-icon"
+          />
+        </span>
       </div>
       <DeleteDialog
         show={modalDelete}

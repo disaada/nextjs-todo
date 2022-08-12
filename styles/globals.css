@@ -7,15 +7,27 @@
   --secondary-text-color: #fff;
   --tertiary-text-color: #888;
   --quartenary-text-color: #555;
-}s
+  background: #F4F4F4;
+}
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background: #F4F4F4  ;
+  font-family: 'Poppins', sans-serif !important;
+  color: var(--primary-text-color) !important;
+}
+
+header, .nav-title, .card-title, .inline-input {
+  font-weight: 700 !important;
+}
+
+button, .modal-title, .form-label {
+  font-weight: 600 !important;
+}
+
+.card-nav, .todo-card-title {
+  font-weight: 500;
 }
 
 a {
@@ -36,12 +48,50 @@ a {
   background-color: transparent !important;
   border-width: 0 0 1px 0 !important;
   border-radius: 0 !important;
+  font-size: 36px !important;
 }
 
 .inline-input:focus {
   box-shadow: 0px 0px transparent !important;
   outline: none !important;
   border-color: transparent !important;
+}
+
+.modal-content {
+  border-radius: 12px !important;
+}
+
+.modal-title {
+  font-size: 24px !important;
+}
+
+.modal-header, .modal-body {
+  padding: 30px !important;
+}
+
+.modal-success-delete {
+  display: flex !important;
+  align-items: center;
+}
+
+.form-control:not(.inline-input), .form-dropdown {
+  margin-bottom: 30px !important;
+}
+
+.form-control, .form-dropdown-input {
+  padding: 10px !important;
+}
+
+.dropdown-item {
+  display: flex !important;
+}
+
+.dropdown-icon {
+  margin-left: 10px !important;
+}
+
+.fa-icon {
+  cursor: pointer !important;
 }
 
 @media (prefers-color-scheme: dark) {

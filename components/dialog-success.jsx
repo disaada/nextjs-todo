@@ -10,7 +10,7 @@ const SuccessDeleteModal = (props) => {
     id="succes-delete-modal"
     {...props}
   >
-    <Modal.Body>
+    <Modal.Body className="modal-success-delete">
       <Image
         src="/icon/modal-information-icon.svg"
         width={30}
@@ -18,7 +18,7 @@ const SuccessDeleteModal = (props) => {
         alt=""
         data-cy="modal-information-icon"
       />
-      <span data-cy="modal-information-title">
+      <span data-cy="modal-information-title" className='dropdown-icon'>
         Activity berhasil dihapus
       </span>
     </Modal.Body>

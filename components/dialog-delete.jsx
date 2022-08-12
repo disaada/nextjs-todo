@@ -45,18 +45,22 @@ const DialogDelete = (props) => {
           <div className="modal-button">
             <Button
               onClick={() => {
-                props.setbutton('batal')
+                props?.setbutton && props.setbutton('batal')
                 props.onHide()
               }}
-              data-cy="modal-delete-cancel-button">
+              data-cy="modal-delete-cancel-button"
+              cancel
+            >
               Batal
             </Button>
             <Button
               onClick={() => {
-                props.setbutton('hapus')
+                props?.setbutton && props.setbutton('hapus')
                 mutate(props.id)
               }}
-              data-cy="modal-delete-confirm-button">
+              data-cy="modal-delete-confirm-button"
+              delete
+            >
               Hapus
             </Button>
           </div>

@@ -6,8 +6,25 @@ const Div = styled.div`
     display: flex;
     justify-content: space-between;
 
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      align-items: end;
+      gap: 15px;
+    }
+
     span {
       margin: 0 20px;
+    }
+
+    .nav-title {
+      font-size: 36px;
+    }
+
+    .nav-button {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
     }
 `
 

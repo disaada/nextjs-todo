@@ -20,18 +20,31 @@ const InputText = (props) => {
       render={({ field: { onChange, value, ref, ...rest } }) => (
         <Form.Group>
           <Form.Label data-cy="modal-add-priority-title">{props.label}</Form.Label>
-          <div data-cy="modal-add-priority-dropdown">
-          <Select
-            inputRef={ref}
-            value={option.find(v => v.value === value ?? 'very-high')}
-            options={option}
-            onChange={(val) => onChange(val.value)}
-            onFocus={() => {}}
-            components={{ 
-              Option: (props) => <Option {...props} ><div data-cy='modal-add-priority-item'><FontAwesomeIcon icon={faCircle} color={props.data.color} /> {props.data.label}</div></Option>,
-              SingleValue: (props) => <SingleValue {...props}><FontAwesomeIcon icon={faCircle} color={props.data.color} /> {props.data.label}</SingleValue>,
-            }}
-          />
+          <div data-cy="modal-add-priority-dropdown" className="form-dropdown">
+            <Select
+              inputRef={ref}
+              value={option.find(v => v.value === value ?? 'very-high')}
+              options={option}
+              onChange={(val) => onChange(val.value)}
+              onFocus={() => { }}
+              components={{
+                Option: (props) => <Option
+                  {...props}
+                  className="form-dropdown-input"
+                >
+                  <div data-cy='modal-add-priority-item'>
+                    <FontAwesomeIcon icon={faCircle} color={props.data.color} style={{ marginRight: 10 }} /> {props.data.label}
+                  </div>
+                </Option>,
+                SingleValue: (props) => <SingleValue
+                  {...props}
+                  className="form-dropdown-input"
+                >
+                  <FontAwesomeIcon icon={faCircle} color={props.data.color} style={{ marginRight: 10 }} />
+                  {props.data.label}
+                </SingleValue>,
+              }}
+            />
           </div>
         </Form.Group>
       )}
