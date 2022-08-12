@@ -230,7 +230,7 @@ export default function Home() {
         <Form data-cy="sort-selection">
           {sortedData?.length > 0
             && [...sortedData]?.map((v, idx) => (
-              <CardTodo data={v} key={v + idx} handleEdit={handleEdit} handleCheck={onEdit} data-cy={"todo-item-" + idx} />
+              <CardTodo data={v} key={v + idx} handleEdit={handleEdit} handleCheck={onEdit} />
             ))}
         </Form>
       </TodoSection>

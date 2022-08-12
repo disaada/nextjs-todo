@@ -39,7 +39,7 @@ const CardTodo = ({ data, handleEdit, handleCheck }) => {
   ];
 
   return (
-    <Container>
+    <Container data-cy="todo-item">
       <div className='card-title'>
         <Form.Check
           id={data.id}
