@@ -176,6 +176,7 @@ export default function Home() {
             alt=""
             style={{ maxWidth: '100px' }}
             data-cy="todo-empty-state"
+            onClick={() => setModalShow(true)}
           />
         )}
         <Form data-cy="sort-selection">
