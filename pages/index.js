@@ -22,6 +22,8 @@ export default function Home() {
     },
   })
 
+  console.log(data?.data?.data.length)
+
   return (
     <Layout>
       <Section>
@@ -29,17 +31,17 @@ export default function Home() {
         <Button onClick={() => mutate({ title: 'New Activity', email })} data-cy="activity-add-button">Tambah</Button>
       </Section>
       <SectionActivity>
-        { data?.data?.data?.length > 0 && data?.data?.data?.map((v, idx) => (
-          <Card data={v} key={v+idx} />
+        {data?.data?.data?.length > 0 && data?.data?.data?.map((v, idx) => (
+          <Card data={v} key={v + idx} />
         ))}
-        {(data?.data?.data?.length <= 0) || isError && (
+        {(data?.data?.data?.length <= 0) && (
           <Image
             src="/icon/activity-empty-state.svg"
             width={300}
             height={300}
             layout="responsive"
             alt=""
-            style={{ maxWidth: '500px', cursor: 'pointer' }}
+            style={{ cursor: 'pointer' }}
             onClick={() => mutate({ title: 'New Activity', email })}
             data-cy="activity-empty-state"
           />
