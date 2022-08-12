@@ -35,7 +35,7 @@ const Sort = (props) => {
       />
 
       <Dropdown.Menu show={props.sortShow} data-cy="sort-parent">
-        <Dropdown.Item onClick={() => handleSort('new')} data-cy="sort-latest">
+        <Dropdown.Item onClick={() => handleSort('new')} data-cy="sort-selection">
           <Image
             src="/icon/sort-newest.svg"
             width={24}
@@ -46,7 +46,7 @@ const Sort = (props) => {
           Terbaru
         </Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item onClick={() => handleSort('old')} data-cy="sort-oldest">
+        <Dropdown.Item onClick={() => handleSort('old')} data-cy="sort-selection">
           <Image
             src="/icon/sort-oldest.svg"
             width={24}
@@ -57,7 +57,7 @@ const Sort = (props) => {
           Terlama
         </Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item onClick={() => handleSort('az')} data-cy="sort-az">
+        <Dropdown.Item onClick={() => handleSort('az')} data-cy="sort-selection">
           <Image
             src="/icon/sort-az.svg"
             width={24}
@@ -68,7 +68,7 @@ const Sort = (props) => {
           A-Z
         </Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item onClick={() => handleSort('za')} data-cy="sort-za">
+        <Dropdown.Item onClick={() => handleSort('za')} data-cy="sort-selection">
           <Image
             src="/icon/sort-za.svg"
             width={24}
@@ -79,7 +79,7 @@ const Sort = (props) => {
           Z-A
         </Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item onClick={() => handleSort('unfinished')} data-cy="sort-unfinished">
+        <Dropdown.Item onClick={() => handleSort('unfinished')} data-cy="sort-selection">
           <Image
             src="/icon/sort-unfinished.svg"
             width={24}
@@ -153,13 +153,29 @@ export default function Home() {
             <FontAwesomeIcon icon={faAngleLeft} data-cy="todo-back-button" />
           </Link>
           <span data-cy="todo-title" >
-            {!editTitle && (<span onClick={() => setEditTitle(!editTitle)}>{data?.data?.title}</span>)}
-            {editTitle && (<Form.Control className='inline-input' value={title} onChange={(evt) => setTitle(evt.target.value)} />)}
+            {!editTitle && (<span onClick={() => setEditTitle(!editTitle)} > {data?.data?.title} </span>)}
+            {editTitle
+              && (
+                <Form.Control
+                  autoFocus
+                  className='inline-input'
+                  value={title}
+                  onChange={(evt) => setTitle(evt.target.value)}
+                  onBlur={() => {
+                    handleChangeTitle()
+                    setEditTitle(!editTitle)
+                  }}
+                />
+              )}
           </span>
-          <FontAwesomeIcon icon={faPencilAlt} onClick={() => {
-            handleChangeTitle()
-            setEditTitle(!editTitle)
-            }} data-cy="todo-title-edit-button" />
+          <FontAwesomeIcon
+            icon={faPencilAlt}
+            onClick={() => {
+              handleChangeTitle()
+              setEditTitle(!editTitle)
+            }}
+            data-cy="todo-title-edit-button"
+          />
         </Div>
         <div>
           <Sort sortShow={sortShow} setSortShow={setSortShow} setSortby={setSortby} />
@@ -172,9 +188,7 @@ export default function Home() {
             src="/icon/todo-empty-state.svg"
             width={300}
             height={300}
-            layout="responsive"
             alt=""
-            style={{ maxWidth: '100px' }}
             data-cy="todo-empty-state"
             onClick={() => setModalShow(true)}
           />
@@ -182,7 +196,7 @@ export default function Home() {
         <Form data-cy="sort-selection">
           {sortedData?.length > 0
             && [...sortedData]?.map((v, idx) => (
-              <CardTodo data={v} key={v + idx} handleEdit={handleEdit} handleCheck={onEdit} data-cy={"todo-item-"+idx} />
+              <CardTodo data={v} key={v + idx} handleEdit={handleEdit} handleCheck={onEdit} data-cy={"todo-item-" + idx} />
             ))}
         </Form>
       </section>
