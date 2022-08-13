@@ -68,7 +68,6 @@ const Card = ({ data }) => {
         id={data.id}
         type="activity"
         fn={deleteActivity}
-        queryname="activity-group"
         setbutton={setButton}
       />
       <SuccessDeleteModal

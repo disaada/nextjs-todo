@@ -22,9 +22,6 @@ const DialogDelete = (props) => {
   const { mutate } = useMutation(props.fn, {
     onSuccess: () => {
       props.onHide()
-      if (props.queryname !== "activity-group") {
-        queryClient.invalidateQueries([props.queryname])
-      }
     }
   })
 
@@ -45,7 +42,7 @@ const DialogDelete = (props) => {
           <div className="modal-button">
             <Button
               onClick={() => {
-                props?.setbutton && props.setbutton('batal')
+                props.setbutton('batal')
                 props.onHide()
               }}
               data-cy="modal-delete-cancel-button"
@@ -55,7 +52,7 @@ const DialogDelete = (props) => {
             </Button>
             <Button
               onClick={() => {
-                props?.setbutton && props.setbutton('hapus')
+                props.setbutton('hapus')
                 mutate(props.id)
               }}
               data-cy="modal-delete-confirm-button"
