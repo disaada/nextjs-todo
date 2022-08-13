@@ -158,7 +158,8 @@ export default function Home() {
     else if (sortby === 'unfinished') res = _.sortBy(data?.data?.todo_items, ['is_active']).reverse()
     else res = data?.data?.todo_items
 
-    res?.length > 0 && setSortedData([...res])
+    if (res?.length > 0) setSortedData([...res])
+    else setSortedData([])
   }, [data, sortby])
 
   return (
