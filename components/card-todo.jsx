@@ -1,10 +1,11 @@
-import React, { useState, memo } from 'react'
+import React, { useState, memo, useEffect } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faPencilAlt, faCircle } from '@fortawesome/free-solid-svg-icons'
 import { Form } from 'react-bootstrap';
 import { deleteTodo } from 'api/todo'
-import { DeleteDialog } from 'components'
+import { DeleteDialog, SuccessDeleteModal } from 'components'
+import { useQueryClient } from '@tanstack/react-query'
 
 const Container = styled.article`
     background-color: var(--secondary-color);
@@ -30,6 +31,9 @@ const Container = styled.article`
 
 const CardTodo = ({ data, handleEdit, handleCheck }) => {
   const [modalDelete, setModalDelete] = useState(false)
+  const [successModal, setSuccessModal] = useState(false)
+  const [button, setButton] = useState('')
+  const queryClient = useQueryClient()
   const option = [
     { value: 'very-high', label: 'Very High', color: '#ED4C5C' },
     { value: 'high', label: 'High', color: '#F8A541' },
@@ -37,6 +41,12 @@ const CardTodo = ({ data, handleEdit, handleCheck }) => {
     { value: 'low', label: 'Low', color: '#428BC1' },
     { value: 'very-low', label: 'Very Low', color: '#8942C1' },
   ];
+
+  useEffect(() => {
+    if (!modalDelete && button === 'hapus') {
+      setSuccessModal(true)
+    }
+  }, [modalDelete, button])
 
   return (
     <Container data-cy="todo-item">
@@ -88,7 +98,14 @@ const CardTodo = ({ data, handleEdit, handleCheck }) => {
         id={data.id}
         type="item"
         fn={deleteTodo}
-        queryname="activity"
+        setbutton={setButton}
+      />
+      <SuccessDeleteModal
+        show={successModal}
+        onHide={() => {
+          successModal && queryClient.invalidateQueries(["activity-group"])
+          setSuccessModal(false)
+        }}
       />
     </Container>
   )

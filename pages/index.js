@@ -26,7 +26,7 @@ const SectionActivity = styled.section`
 export default function Home() {
   const email = 'disaada@gmail.com'
   const queryClient = useQueryClient()
-  const { data } = useQuery(['activity-group'], () => getActivity(email))
+  const { data } = useQuery(['activity-group'], () => getActivity(email), { refetchOnWindowFocus: false })
 
   const { mutate } = useMutation(createActivity, {
     onSuccess: () => {
