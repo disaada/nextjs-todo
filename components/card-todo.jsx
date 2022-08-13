@@ -103,7 +103,7 @@ const CardTodo = ({ data, handleEdit, handleCheck }) => {
       <SuccessDeleteModal
         show={successModal}
         onHide={() => {
-          successModal && queryClient.invalidateQueries(["activity-group"])
+          successModal && queryClient.invalidateQueries(["activity"])
           setSuccessModal(false)
         }}
       />
