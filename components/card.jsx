@@ -31,6 +31,10 @@ const Container = styled.article`
       color: var(--tertiary-text-color);
       font-size: 14px;
     }
+
+    &:hover {
+      box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+    }
 `
 
 const Card = ({ data }) => {

@@ -9,6 +9,12 @@ const StyledButton = styled.button`
     padding: 13px 21px;
     outilne: none;
     border: 0;
+    
+    &:hover {
+      color: ${props => props?.delete ? 'var(--tertiary-color)' : props?.cancel ? 'var(--tertiary-text-color)' : 'var(--primary-color)'};
+      background-color: ${props => props?.cancel ? 'var(--primary-text-color)' : 'var(--secondary-text-color)'};
+      border: 1px solid ${props => props?.delete ? 'var(--tertiary-color)' : props?.cancel ? 'var(--tertiary-text-color)' : 'var(--primary-color)'};
+    }
 `
 
 const Button = (props) => {
